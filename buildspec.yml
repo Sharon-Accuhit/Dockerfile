@@ -18,5 +18,5 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - rm Dockerfile.base
       - apt-get update && apt-get upgrade &>/dev/null
-      - apt-get install tree &>/dev/null
+      - apt-get install tree -y &>/dev/null
       - tree
