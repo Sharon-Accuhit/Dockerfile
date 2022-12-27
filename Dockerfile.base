@@ -1,6 +1,6 @@
 # first stage
 # install package
-FROM debian:stable-slim
+FROM public.ecr.aws/debian/debian:stable-slim
 WORKDIR /app
 COPY ./app .
 RUN ["/bin/bash", "install.sh"]
