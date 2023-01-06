@@ -1,0 +1,4 @@
+export IMAGE_REPO_NAME=dockerfile-base-image
+export IMAGE_TAG=latest
+export AWS_ACCOUNT_ID=071705621905
+export AWS_DEFAULT_REGION=us-east-1
