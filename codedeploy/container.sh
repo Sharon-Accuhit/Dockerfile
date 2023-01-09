@@ -7,7 +7,7 @@ pwd
 #install docker
 [ -f get-docker.sh ] && rm get-docker.sh
 curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
+source ./get-docker.sh
 
 #set variable
 source config.txt
