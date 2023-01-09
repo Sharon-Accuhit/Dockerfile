@@ -3,9 +3,11 @@
 ls -al app
 
 #install docker
-[ ! -f get-docker.sh ] && \
-curl -fsSL https://get.docker.com -o get-docker.sh && \
-sh get-docker.sh
+if [ ! -f get-docker.sh ]
+  then
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sh get-docker.sh
+fi
 
 #set variable
 source app/config.txt
