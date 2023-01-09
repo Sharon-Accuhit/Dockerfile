@@ -5,13 +5,9 @@ cd app
 pwd
 
 #install docker
-if [ ! -f get-docker.sh ]
-  then
-    curl -fsSL https://get.docker.com -o get-docker.sh
-    sh get-docker.sh
-  else
-    echo "failed"
-fi
+[ -f get-docker.sh ] && rm get-docker.sh
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
 
 #set variable
 source config.txt
