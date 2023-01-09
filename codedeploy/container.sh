@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ls -al codeploy
+ls -al
 #set variable
 source ~/codedeploy/config.txt
 
