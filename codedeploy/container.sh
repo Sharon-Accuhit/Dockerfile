@@ -8,6 +8,7 @@ pwd
 [ -f get-docker.sh ] && rm get-docker.sh
 curl -fsSL https://get.docker.com -o get-docker.sh
 source ./get-docker.sh
+systemctl start docker
 
 #set variable
 source config.txt
