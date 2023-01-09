@@ -1,10 +1,11 @@
 #!/bin/bash
 
-ls -al app
+#workdir
 cd app
-pwd
 
 #install docker
+docker &>/dev/null
+[ $? = 0 ] && yum erase docker -y 
 yum upgrade && yum update
 yum install docker -y
 systemctl start docker
@@ -21,5 +22,7 @@ source config.txt
 #docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
 
 #run container
-docker run --name=container -h test --restart=always -itd \
-071705621905.dkr.ecr.us-east-1.amazonaws.com/dockerfile-base-image
+docker ps -a | grep container &>/dev/null
+[ $? = 0 ] && docker rm -f container
+docker run --name=container --restart=always -itd \
+$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
