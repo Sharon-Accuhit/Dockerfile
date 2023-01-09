@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ls -al app
+cd app
 pwd
 
 #install docker
