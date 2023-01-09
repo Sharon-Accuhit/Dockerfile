@@ -14,7 +14,7 @@ if [ ! -f get-docker.sh ]
 fi
 
 #set variable
-source app/config.txt
+source config.txt
 
 #pull image
 #echo Logging in to Amazon ECR...
