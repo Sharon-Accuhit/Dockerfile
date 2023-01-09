@@ -2,13 +2,13 @@
 
 ls -al app
 
+#install docker
+[ ! -f get-docker.sh ] && \
+curl -fsSL https://get.docker.com -o get-docker.sh && \
+sh get-docker.sh
+
 #set variable
 source app/config.txt
-
-#install docker
-[ ! -f get-docker.sh ] && echo $?
-#curl -fsSL https://get.docker.com -o get-docker.sh && \
-#sh get-docker.sh
 
 #pull image
 #echo Logging in to Amazon ECR...
