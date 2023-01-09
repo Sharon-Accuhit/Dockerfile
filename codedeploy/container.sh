@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ls -al app
-cat app/container.sh
+pwd
 
 #install docker
 if [ ! -f get-docker.sh ]
