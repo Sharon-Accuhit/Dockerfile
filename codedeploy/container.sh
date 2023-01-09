@@ -5,9 +5,8 @@ cd app
 pwd
 
 #install docker
-[ -f get-docker.sh ] && rm get-docker.sh
-curl -fsSL https://get.docker.com -o get-docker.sh
-source ./get-docker.sh
+yum upgrade && yum update
+yum install docker -y
 systemctl start docker
 
 #set variable
