@@ -1,8 +1,9 @@
 #!/bin/bash
 
 ls -al app
+
 #set variable
-source ~/codedeploy/config.txt
+source ~/app/config.txt
 
 #install docker
 [ ! -f get-docker.sh ] && \
