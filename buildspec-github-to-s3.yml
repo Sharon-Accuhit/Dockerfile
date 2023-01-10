@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Install phase started...
+  pre_build:
+    commands:
+      - echo Started pre_build phase...
+      - ls -al
+      - aws --version
+      - aws s3 cp --recursive . s3://dockerfile-baseimage
+  build:
+    commands:
+      - echo Build started on `date`
+  post_build:
+    commands:
+      - echo Build completed on `date`
