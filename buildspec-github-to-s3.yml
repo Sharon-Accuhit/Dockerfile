@@ -7,9 +7,10 @@ phases:
   pre_build:
     commands:
       - echo Started pre_build phase...
+      - mkdir $CodePipeline/$OutputArtifact
       - ls -al
       - aws --version
-      - aws s3 cp --recursive . s3://dockerfile-baseimage
+      - aws s3 cp --recursive . s3://dockerfile-baseimage/$OutputArtifact/
   build:
     commands:
       - echo Build started on `date`
