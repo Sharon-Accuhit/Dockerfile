@@ -3,6 +3,11 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo Started pre_build phase...
+      - mkdir -p $CodePipeline/$OutputArtifact
+      - ls -al
+      - aws version
+      - aws s3 cp --recursive . s3://dockerfile-baseimage/$CodePipeline/$OutputArtifact/
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
@@ -21,4 +26,7 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"dockerfile-base-image","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
 artifacts:
-    files: imagedefinitions.json
+  files:
+    - codedeploy/* 
+    - appspec.yml
+    - imagedefinitions.json
