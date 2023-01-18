@@ -21,6 +21,11 @@ source config.txt
 #echo Pulling the Docker image...
 #docker pull $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
 
+#remove the past image
+docker images | grep "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME" 
+&>/dev/null
+[ $? = 0 ] && docker rmi -f $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+
 #run container
 docker ps -a | grep container &>/dev/null
 [ $? = 0 ] && docker rm -f container
