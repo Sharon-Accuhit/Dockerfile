@@ -10,7 +10,7 @@ RUN ["/bin/bash", "install.sh"]
 RUN ["/bin/bash", "set.sh"]
 
 # final stage
-# run servic
+# run service
 RUN apt-get install dumb-init -y
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["/bin/bash", "run.sh"]
