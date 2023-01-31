@@ -10,6 +10,9 @@ phases:
       - aws s3 cp --recursive . s3://dockerfile-baseimage/$CodePipeline/$OutputArtifact/
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      # set time zone
+      - cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
+      - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
   build:
     commands:
       - echo Build started on `date`
