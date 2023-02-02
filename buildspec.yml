@@ -8,13 +8,12 @@ phases:
       - cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime
       # set the tag of image
       - IMAGE_TAG=$(date +%Y%m%d%H%M%S)
-      - echo $IMAGE_TAG > image_tag.txt
+      - echo $IMAGE_TAG > codedeploy/image_tag.txt
       # create S3 directory
       - mkdir -p $CodePipeline/$OutputArtifact
       - ls -al
       - aws --version
       - aws s3 cp --recursive . s3://dockerfile-baseimage/$CodePipeline/$OutputArtifact/
-      - aws s3 cp image_tag.txt s3://dockerfile-baseimage/$CodePipeline/$OutputArtifact/codedeploy/
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
