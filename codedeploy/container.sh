@@ -12,7 +12,7 @@ systemctl start docker
 
 #set variable
 source config.txt
-source image_tag.txt
+IMAGE_TAG=$(cat image_tag.txt)
 
 #remove the past image
 docker images | grep "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME" 
