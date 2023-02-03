@@ -15,9 +15,17 @@ source config.txt
 IMAGE_TAG=$(cat image_tag.txt)
 
 #remove the past image
-docker images | grep "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME" 
-&>/dev/null
-[ $? = 0 ] && docker rmi -f $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+docker images | grep "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME" &>/dev/null
+if [ $? = 0 ]
+then
+  docker images | grep "$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME" | \
+  cut -d " " -f 4 > tag.txt
+  cat tag.txt | while read line
+  do
+    docker rmi -f $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$line
+  done
+  rm tag.txt
+fi
 
 #pull image
 echo Logging in to Amazon ECR...
